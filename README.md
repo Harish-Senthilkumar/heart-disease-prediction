@@ -22,6 +22,28 @@ Heart disease is a leading cause of global mortality. The goal of this project i
 
 ---
 
+## Key Findings & Interpretation
+
+### 1. Data Quality & Leakage Prevention
+* **Deduplication Impact:** The initial dataset contained 1,025 rows, but exact duplicate checking revealed **723 redundant records**.
+* **Leakage Avoidance:** Removing these duplicates reduced the dataset to **302 unique patient profiles**, successfully preventing data leakage between the training and test sets and ensuring realistic model evaluation.
+* **Outlier Profile:** Outlier screening showed **1 patient** with extreme cholesterol levels (>500 mg/dl) and **0 patients** with extreme resting blood pressure (>200 mm Hg).
+
+### 2. Model Performance
+* **Overall Accuracy:** The Random Forest Classifier achieved an **80.33% accuracy score** on the 20% stratified test set (61 patient samples).
+* **Low Residual Error:** The model achieved a **Mean Absolute Error (MAE) of 0.1967**, demonstrating strong calibration for binary risk classification.
+* **Balanced Metrics:** 
+  * **No Disease (Class 0):** Precision = `0.77`, Recall = `0.82`, F1-Score = `0.79`
+  * **Heart Disease (Class 1):** Precision = `0.84`, Recall = `0.79`, F1-Score = `0.81`
+* **Clinical Safety:** A high precision score (`84%`) for positive disease cases minimizes false alarms, while an `81%` F1-score balances safety and diagnostic reliability.
+
+### 3. Key Physiological Risk Drivers
+* **Exercise Stress Response (`thalach`):** Maximum heart rate achieved during exercise emerged as a primary predictive feature, showing a strong negative correlation with heart disease risk.
+* **ST Depression (`oldpeak`):** Electrocardiogram changes during exercise relative to rest provided strong discriminatory power for underlying cardiac stress.
+* **Symptom Mapping (`cp`):** Specific chest pain configurations serve as heavy indicators for model classification pathways.
+
+---
+
 ## Project Structure
 
 ```text
